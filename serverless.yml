@@ -18,12 +18,14 @@ plugins:
 
 package:
   exclude:
-    - node_modules/**/*
+    - node_modules/dotenv/*
+    - node_modules/express/*
+    - node_modules/morgan/*
   include:
     handler.ts
 
 service: aws-nodejs # NOTE: update this with your service name
-#app: your-app-name
+# app: node-html2pdf
 #tenant: your-tenant-name
 
 # You can pin your service to only deploy with a specific Serverless version
@@ -37,11 +39,11 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs8.10
 
 # you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: prod
+  region: eu-central-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -78,7 +80,7 @@ functions:
 
     events:
       - http:
-          path: pdf
+          path: convert
           method: get
 
 #    The following are a few example events you can configure

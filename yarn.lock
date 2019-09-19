@@ -351,10 +351,17 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.49.tgz#ab4df6e505db088882c8ce5417ae0bc8cbb7a8a6"
   integrity sha512-YY0Okyn4QXC4ugJI+Kng5iWjK8A6eIHiQVaGIhJkyn0YL6Iqo0E0tBC8BuhvYcBK87vykBijM5FtMnCqaa5anA==
 
-"@types/puppeteer@^1.12.4":
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.12.4.tgz#8388efdb0b30a54a7e7c4831ca0d709191d77ff1"
-  integrity sha512-aaGbJaJ9TuF9vZfTeoh876sBa+rYJWPwtsmHmYr28pGr42ewJnkDTq2aeSKEmS39SqUdkwLj73y/d7rBSp7mDQ==
+"@types/puppeteer-core@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer-core/-/puppeteer-core-1.9.0.tgz#5ceb397e3ff769081fb07d71289b5009392d24d3"
+  integrity sha512-YJwGTq0a8xZxN7/QDeW59XMdKTRNzDTc8ZVBPDB6J13GgXn1+QzgMA8pAq1/bj2FD0R7xj3nYoZra10b0HLzFw==
+  dependencies:
+    "@types/puppeteer" "*"
+
+"@types/puppeteer@*", "@types/puppeteer@^1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.19.1.tgz#942ca62288953a0f5fbbc25c103b5f2ba28b60ab"
+  integrity sha512-ReWZvoEfMiJIA3AG+eM+nCx5GKrU2ANVYY5TC0nbpeiTCtnJbcqnmBbR8TkXMBTvLBYcuTOAELbTcuX73siDNQ==
   dependencies:
     "@types/node" "*"
 
@@ -658,6 +665,11 @@ chownr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.1.tgz#54726b8b8fff4df053c42187e801fb4412df1494"
   integrity sha512-j38EvO5+LHX84jlo6h4UzmOwi0UgW61WRyPtJz4qaadK5eY3BTS5TY/S1Stc3Uk2lIM6TPevAlULiEJwie860g==
+
+chrome-aws-lambda@^1.20.0:
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-1.20.0.tgz#134d62bd44e664304bb04aa278798911692779e9"
+  integrity sha512-RBvb2JXWoD38zONmSlykPibeKmfxxLMPyV4z29SuMGPBmglJpGbbjoqDiYeNKKtZZftsAib8SeFYvkbg5OIapA==
 
 ci-info@^1.5.0:
   version "1.6.0"
@@ -2147,10 +2159,10 @@ pstree.remy@^1.1.6:
   resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.7.tgz#c76963a28047ed61542dc361aa26ee55a7fa15f3"
   integrity sha512-xsMgrUwRpuGskEzBFkH8NmTimbZ5PcPup0LA8JJkHIm2IMUbQcpo3yeLNWVrufEYjh8YwtSVh0xz6UeWc5Oh5A==
 
-puppeteer@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.17.0.tgz#371957d227a2f450fa74b78e78a2dadb2be7f14f"
-  integrity sha512-3EXZSximCzxuVKpIHtyec8Wm2dWZn1fc5tQi34qWfiUgubEVYHjUvr0GOJojqf3mifI6oyKnCdrGxaOI+lWReA==
+puppeteer-core@^1.20.0:
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-1.20.0.tgz#cfad0c7cbb6e9bb0d307c6e955e5c924134bbeb5"
+  integrity sha512-akoSCMDVv6BFd/4+dtW6mVgdaRQhy/cmkGzXcx9HAXZqnY9zXYbsfoXMiMpwt3+53U9zFGSjgvsi0mDKNJLfqg==
   dependencies:
     debug "^4.1.0"
     extract-zip "^1.6.6"
