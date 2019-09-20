@@ -1,20 +1,41 @@
-const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
-
 export default class PDFRenderer {
-	async renderURL(url: string, format: string = 'A4') {
-		const executablePath = await chromium.executablePath;
+	lambda: boolean;
+	puppeteer: any;
+	chromium: any;
 
-		const browser = await puppeteer.launch({
-			headless: true,
-			args: chromium.args,
-			executablePath,
-		});
+	constructor(lambda: boolean) {
+		this.lambda = lambda;
+		if (lambda) {
+			this.puppeteer = require('puppeteer-core');
+			this.chromium = require('chrome-aws-lambda');
+		} else {
+			this.puppeteer = require('puppeteer');
+		}
+	}
+
+	async renderURL(url: string, format: string = 'A4') {
+		const browser = await this.buildBrowser();
 		const page = await browser.newPage();
 		await page.goto(url, { waitUntil: 'networkidle0' });
 		const pdf = await page.pdf({ format: format, printBackground: true });
 
 		await browser.close();
 		return pdf;
+	}
+
+	private async buildBrowser() {
+		if (this.lambda) {
+			const executablePath = await this.chromium.executablePath;
+
+			return await this.puppeteer.launch({
+				headless: true,
+				args: this.chromium.args,
+				executablePath,
+			});
+		} else {
+			return await this.puppeteer.launch({
+				headless: true,
+			});
+		}
 	}
 }

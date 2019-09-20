@@ -4,9 +4,9 @@ import PDFRenderer from '../lib/PDFRenderer';
 import { isValidUrl } from '../lib/utils'
 
 const router: Router = Router();
-const pdfRenderer = new PDFRenderer();
+const pdfRenderer = new PDFRenderer(false);
 
-router.get('/pdf', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
 	if (!req.query.url) {
 		return res.send({ ok: false, error: 'Missing parameter `url`', code: HttpStatus.BAD_REQUEST });
 	}
@@ -18,6 +18,7 @@ router.get('/pdf', async (req: Request, res: Response) => {
 		const pdf = await pdfRenderer.renderURL(req.query.url);
 		res.contentType('application/pdf');
 		res.end(pdf, 'binary');
+		return res;
 	} catch (error) {
 		console.error(error);
 		return res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });

@@ -18,3 +18,9 @@ yarn global add serverless
 yarn install
 yarn lambda
 ```
+
+# Deploy on lambda
+
+```bash
+serverless deploy -v // Optionally you can specify a profile with `--aws-profile profile-name`
+```

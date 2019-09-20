@@ -18,9 +18,10 @@ plugins:
 
 package:
   exclude:
-    - node_modules/dotenv/*
-    - node_modules/express/*
-    - node_modules/morgan/*
+    - node_modules/puppeteer/**/*
+    - node_modules/dotenv/**/*
+    - node_modules/express/**/*
+    - node_modules/morgan/**/*
   include:
     handler.ts
 

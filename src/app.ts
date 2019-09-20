@@ -6,7 +6,7 @@ import * as bodyParser from 'body-parser';
 import * as HttpStatus from 'http-status-codes';
 import * as express from 'express';
 
-import { Router, Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import convertRoute from './routes/convertRoutes'
 
 // Assign router to the express.Router() instance
