@@ -1,5 +1,6 @@
 import app from '../app';
 import * as http from 'http';
+import Sentry from '../lib/SentryConfig';
 
 const port = normalizePort(process.env.PORT ? +process.env.PORT : 3000);
 app.set('port', port);
@@ -27,6 +28,7 @@ function onError(error: any) {
 	if (error.syscall != 'listen') {
 		throw error;
 	}
+	Sentry.captureException(error);
 
 	var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 

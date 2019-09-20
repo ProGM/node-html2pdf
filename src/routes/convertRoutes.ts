@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
 import PDFRenderer from '../lib/PDFRenderer';
 import { isValidUrl } from '../lib/utils'
+import Sentry from '../lib/SentryConfig';
 
 const router: Router = Router();
 const pdfRenderer = new PDFRenderer(false);
@@ -21,6 +22,7 @@ router.get('/', async (req: Request, res: Response) => {
 		return res;
 	} catch (error) {
 		console.error(error);
+		Sentry.captureException(error);
 		return res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
 	}
 });

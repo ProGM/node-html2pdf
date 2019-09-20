@@ -2,21 +2,21 @@ import { Handler, Context } from 'aws-lambda';
 import * as HttpStatus from 'http-status-codes';
 import { isValidUrl } from './src/lib/utils';
 import PDFRenderer from './src/lib/PDFRenderer';
-
-const pdfRenderer = new PDFRenderer(true);
+import Sentry from './src/lib/SentryConfig';
 
 const pdf: Handler = async (event: any, context: Context) => {
-	const url = event.queryStringParameters && event.queryStringParameters.url;
-
-	if (!url) {
-		return { statusCode: HttpStatus.BAD_REQUEST, body: JSON.stringify({ error: 'Missing parameter `url`' }) }
-	}
-
-	if (!isValidUrl(url)) {
-		return { statusCode: HttpStatus.BAD_REQUEST, body: JSON.stringify({ error: `"${url}" is not a valid URL` }) }
-	}
-
 	try {
+		const pdfRenderer = new PDFRenderer(true);
+		const url = event.queryStringParameters && event.queryStringParameters.url;
+
+		if (!url) {
+			return { statusCode: HttpStatus.BAD_REQUEST, body: JSON.stringify({ error: 'Missing parameter `url`' }) }
+		}
+
+		if (!isValidUrl(url)) {
+			return { statusCode: HttpStatus.BAD_REQUEST, body: JSON.stringify({ error: `"${url}" is not a valid URL` }) }
+		}
+
 		const file = await pdfRenderer.renderURL(url);
 		return {
 			statusCode: HttpStatus.OK,
@@ -27,7 +27,7 @@ const pdf: Handler = async (event: any, context: Context) => {
 			isBase64Encoded: true
 		};
 	} catch (error) {
-		console.error(error);
+		Sentry.captureException(error);
 		return { statusCode: HttpStatus.INTERNAL_SERVER_ERROR, body: JSON.stringify({ error: error.message }) }
 	}
 };
