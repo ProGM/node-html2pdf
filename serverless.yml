@@ -18,14 +18,14 @@ plugins:
 
 package:
   exclude:
-    - node_modules/puppeteer/**/*
+    - node_modules/puppeteer/.local-chromium/**/*
     - node_modules/dotenv/**/*
     - node_modules/express/**/*
     - node_modules/morgan/**/*
   include:
     handler.ts
 
-service: aws-nodejs # NOTE: update this with your service name
+service: node-html2pdf # NOTE: update this with your service name
 # app: node-html2pdf
 #tenant: your-tenant-name
 

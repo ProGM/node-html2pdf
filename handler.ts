@@ -3,7 +3,7 @@ import * as HttpStatus from 'http-status-codes';
 import { isValidUrl } from './src/lib/utils';
 import PDFRenderer from './src/lib/PDFRenderer';
 
-const pdfRenderer = new PDFRenderer(false);
+const pdfRenderer = new PDFRenderer(true);
 
 const pdf: Handler = async (event: any, context: Context) => {
 	const url = event.queryStringParameters && event.queryStringParameters.url;
