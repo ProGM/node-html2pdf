@@ -19,8 +19,12 @@ yarn install
 yarn lambda
 ```
 
-# Deploy on lambda
+### Deploy on lambda
 
 ```bash
 serverless deploy -v // Optionally you can specify a profile with `--aws-profile profile-name`
 ```
+
+### Sentry
+
+Just set the env SENTRY_DSN with your sentry url, and it's done!
