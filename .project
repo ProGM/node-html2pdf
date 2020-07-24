@@ -1,0 +1,4 @@
+PROJECT_NAME=html2pdf
+PROJECT_PORT=3000
+PROJECT_TYPE=nodejs
+PROJECT_COMMAND="script/server"
