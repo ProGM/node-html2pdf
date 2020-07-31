@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import * as HttpStatus from 'http-status-codes';
+import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from 'http-status-codes';
 import PDFRenderer from '../lib/PDFRenderer';
 import { isValidUrl } from '../lib/utils'
 import Sentry from '../lib/SentryConfig';
@@ -9,10 +9,10 @@ const pdfRenderer = new PDFRenderer(false);
 
 router.get('/', async (req: Request, res: Response) => {
 	if (!req.query.url) {
-		return res.send({ ok: false, error: 'Missing parameter `url`', code: HttpStatus.BAD_REQUEST });
+		return res.status(BAD_REQUEST).send({ ok: false, error: 'Missing parameter `url`', code: BAD_REQUEST });
 	}
 	if (!isValidUrl(req.query.url)) {
-		return res.send({ ok: false, error: `"${req.query.url}" is not a valid URL`, code: HttpStatus.BAD_REQUEST });
+		return res.status(BAD_REQUEST).send({ ok: false, error: `"${req.query.url}" is not a valid URL`, code: BAD_REQUEST });
 	}
 
 	try {
@@ -23,7 +23,7 @@ router.get('/', async (req: Request, res: Response) => {
 	} catch (error) {
 		console.error(error);
 		Sentry.captureException(error);
-		return res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
+		return res.status(INTERNAL_SERVER_ERROR).send({ ok: false, error: error.message, code: INTERNAL_SERVER_ERROR });
 	}
 });
 
