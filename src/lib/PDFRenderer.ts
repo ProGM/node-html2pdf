@@ -6,8 +6,8 @@ export default class PDFRenderer {
 	constructor(lambda: boolean) {
 		this.lambda = lambda;
 		if (lambda) {
-			this.puppeteer = require('puppeteer-core');
 			this.chromium = require('chrome-aws-lambda');
+			this.puppeteer = this.chromium.puppeteer;
 		} else {
 			this.puppeteer = require('puppeteer');
 		}
